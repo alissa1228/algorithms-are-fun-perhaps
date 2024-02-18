@@ -12,18 +12,18 @@
 - 코드 리뷰 및 피드백 제공
 ## 팀원 소개
 ### 윤정민
-![Alice Yoon](https://example.com/john-doe.jpg)
+![Alice Yoon](https://github.com/algorithms-are-fun-perhaps/algorithms-are-fun-perhaps/assets/89906414/757777d3-f314-40cf-b9e6-6d42e92ee195)
 
 | 소개            | 깃허브 계정                |
 |-----------------|-----------------------|
 | 더 나은 개발자가 되고 싶어 알고리즘을 공부하게 된 프런트엔드 개발자 윤정민 | johndoe@example.com   |
 
 ### Jane Smith
-![Fred Lee](https://example.com/jane-smith.jpg)
+![Fred Lee](https://github.com/algorithms-are-fun-perhaps/algorithms-are-fun-perhaps/assets/89906414/b6ce2681-5250-499d-9b7b-80e20dd7b5d9)
 
 | 소개          | 깃허브 계정                |
 |--------------|-----------------------|
-| 이제 알고리즘 시험에서 당당하게 문제를 풀고 싶어진 백엔드 개발자 이주희| juhee.fred.lee@gmail.com |
+| 이제 알고리즘 시험에서 사람답게 싶어진 백엔드 개발자 이주희| juhee.fred.lee@gmail.com |
 
 ## 활동 내용
 - 매주 알고리즘 주제 선정 후 해당 주제에 대하여 설명할 수 있는 자료 작성 (스크립트 or 블로깅)
