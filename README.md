@@ -12,18 +12,18 @@
 - 코드 리뷰 및 피드백 제공
 ## 팀원 소개
 ### 윤정민
-![Alice Yoon]([https://github.com/algorithms-are-fun-perhaps/algorithms-are-fun-perhaps/assets/89906414/757777d3-f314-40cf-b9e6-6d42e92ee195](https://github.com/algorithms-are-fun-perhaps/algorithms-are-fun-perhaps/assets/89906414/4f219d0c-b356-4f84-835b-233a5ba8e904))
-
 | 소개            | 깃허브 계정                |
 |-----------------|-----------------------|
 | 더 나은 개발자가 되고 싶어 알고리즘을 공부하게 된 프런트엔드 개발자 윤정민 | johndoe@example.com   |
 
-### 이주희
-![Fred Lee](https://github.com/algorithms-are-fun-perhaps/algorithms-are-fun-perhaps/assets/89906414/6e9d780d-6141-409a-bbb2-09ca550db140)
+![Alice Yoon](https://github.com/algorithms-are-fun-perhaps/algorithms-are-fun-perhaps/assets/89906414/4f219d0c-b356-4f84-835b-233a5ba8e904)
 
+### 이주희
 | 소개          | 깃허브 계정                |
 |--------------|-----------------------|
 | 더 이상 알고리즘 시험에서 DFS 말고 다른 알고리즘도 써보고 싶어 백엔드 개발자 이주희| juhee.fred.lee@gmail.com |
+
+![Fred Lee](https://github.com/algorithms-are-fun-perhaps/algorithms-are-fun-perhaps/assets/89906414/6e9d780d-6141-409a-bbb2-09ca550db140)
 
 ## 활동 내용
 - 매주 알고리즘 주제 선정 후 해당 주제에 대하여 설명할 수 있는 자료 작성 (스크립트 or 블로깅)
