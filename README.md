@@ -21,7 +21,7 @@
 ### 이주희
 | 소개          | 깃허브 계정                |
 |--------------|-----------------------|
-| 더 이상 알고리즘 시험에서 DFS 말고 다른 알고리즘도 써보고 싶어 백엔드 개발자 이주희| juhee.fred.lee@gmail.com |
+| 몇번의 실패 끝에 이제는 알고리즘 공부를 확실하게 끝내보고 싶은 백엔드 개발자 이주희| juhee.fred.lee@gmail.com |
 
 ![Fred Lee](https://github.com/algorithms-are-fun-perhaps/algorithms-are-fun-perhaps/assets/89906414/6e9d780d-6141-409a-bbb2-09ca550db140)
 
