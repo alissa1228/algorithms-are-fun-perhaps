@@ -1,9 +1,3 @@
----
-name: Pull Request Template
-about: Template for creating a Pull Request
-title: "[Issue 번호] 문제 설명"
----
-
 ### ⭐ 해당 이슈(스터디) 번호
 
 [관련된 이슈 번호를 여기에 기입해주세요]
