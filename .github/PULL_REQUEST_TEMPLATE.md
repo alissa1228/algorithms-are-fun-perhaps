@@ -1,9 +1,7 @@
 ---
-name: 'study'
-about: let's learn some cool algorithms!
-title: "[#월 #주차 알고리즘 스터디] 이름"
-labels: study
-assignees: 'fredlee613'
+name: Pull Request Template
+about: Template for creating a Pull Request
+title: "[Issue 번호] 문제 설명"
 ---
 
 ### ⭐ 해당 이슈(스터디) 번호
