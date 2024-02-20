@@ -3,7 +3,7 @@ name: 'study'
 about: let's learn some cool algorithms!
 title: "[#월 #주차 알고리즘 스터디] 스터디주제"
 labels: study
-assignees: 'fredlee613'
+assignees: 'fredlee613, alissa1228'
 ---
 
 ## 🙆🙆 참여자
