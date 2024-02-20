@@ -1,10 +1,9 @@
 ---
-name: Custom issue template
-about: Describe this issue template's purpose here.
-title: ''
-labels: ''
-assignees: ''
-
+name: 'Issue: study'
+about: let's learn some cool algorithms!
+title: "[study]"
+labels: study
+assignees: 'fredlee613'
 ---
 
 ##  #[월]월 #[주차]주차  알고리즘 스터디 - [스터디 주제]
