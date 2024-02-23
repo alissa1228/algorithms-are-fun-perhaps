@@ -27,3 +27,6 @@ replay_pid*
 /.idea/modules.xml
 /.idea/workspace.xml
 /.idea/misc.xml
+/algorithms-are-fun-perhaps.iml
+/.idea/.gitignore
+/.idea/vcs.xml
