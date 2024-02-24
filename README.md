@@ -15,7 +15,7 @@
 ### 윤정민
 | 소개            | 깃허브 계정                |
 |-----------------|-----------------------|
-| 소개글을 써주세요....! 프런트엔드 개발자 윤정민 | alissa1228   |
+| 알고리즘과 친해지고 싶은 프런트엔드 개발자 윤정민 | alissa1228   |
 
 ![Alice Yoon](https://github.com/algorithms-are-fun-perhaps/algorithms-are-fun-perhaps/assets/89906414/4f219d0c-b356-4f84-835b-233a5ba8e904)
 
