@@ -1,4 +1,4 @@
-package stack;
+package stackandqueue;
 
 public class TestMyStack {
     public static void main(String[] args) {

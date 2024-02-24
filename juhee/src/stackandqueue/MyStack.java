@@ -1,4 +1,4 @@
-package stack;
+package stackandqueue;
 
 /**
  * 직접 구현하는 스택

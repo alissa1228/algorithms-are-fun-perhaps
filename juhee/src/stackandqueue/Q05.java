@@ -1,25 +1,35 @@
-package stack;
+package stackandqueue;
 
 import java.io.*;
 import java.util.Stack;
 
-public class Q02 {
+/**
+ * 쇠막대기
+ */
+public class Q05 {
     public static void main(String[] args) throws IOException {
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter stdOut = new BufferedWriter(new OutputStreamWriter(System.out));
-        Stack<Character> stack = new Stack<>();
         char[] input = stdIn.readLine().toCharArray();
-        for (int i = 0; i < input.length; i++) {
+        Stack<Character> stack = new Stack<>();
+        stack.push(input[0]);
+        int cnt = 0;
+        for (int i = 1; i < input.length; i++) {
             if (input[i] == ')') {
-                while (!stack.isEmpty() && stack.peek() != '(') {
+                if (input[i - 1] == input[i]) {
                     stack.pop();
+                    cnt++;
+                } else {
+                    stack.pop();
+                    cnt += stack.size();
                 }
-                stack.pop();
             } else {
                 stack.push(input[i]);
             }
         }
-        for(int i = 0; i < stack.size(); i++) stdOut.write(stack.elementAt(i));
+        stdOut.write(String.valueOf(cnt));
         stdOut.flush();
+        stdOut.close();
+        stdIn.close();
     }
 }
