@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 삼각형 판별하기</title>
+</head>
+<body>
+    <Script>
+        //시간복잡도 O(1)
+        function solution(a,b,c) {
+            let Long;
+            let sum=a+b+c;
+            if(a>b){
+                Long=a;
+            }else{
+                Long=b;
+            }
+            if(c>Long){
+                Long=c;
+            }
+
+            if(sum - Long > Long) {
+                return "YES"
+            }else{
+                return "NO"
+            }
+        }
+        console.log(solution(15,87,52)); //NO
+        console.log(solution(19,34,25)); //YES
+    </Script>
+</body>
+</html>
