@@ -22,11 +22,8 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
-/juhee/juhee.iml
-/juhee/src/Main.java
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/misc.xml
-/algorithms-are-fun-perhaps.iml
 /.idea/.gitignore
+/algorithms-are-fun-perhaps.iml
+/.idea/misc.xml
+/.idea/modules.xml
 /.idea/vcs.xml
