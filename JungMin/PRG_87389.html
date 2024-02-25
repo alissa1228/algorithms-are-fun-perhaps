@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[PRG] 나머지가 1이 되는 수 찾기</title>
+</head>
+<body>
+    <Script>
+        //시간복잡도 O(n)
+        function solution(n) {
+            for(let i=1;i<=n;i++) {
+                if(n%i==1) return i
+            }
+    }
+    console.log(solution(10));
+    </Script>
+</body>
+</html>

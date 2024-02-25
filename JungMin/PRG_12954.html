@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[PRG] x만큼 간격이 있는 n개의 숫자</title>
+</head>
+<body>
+    <Script>
+        //시간 복잡도 O(n)
+        //x만큼 간격 2,4,6 ... 구구단 문제!
+        function solution(x, n) {
+        let answer = [];
+        for(let i=1; i<=n; i++){
+            answer.push(i*x)
+        }
+        return answer;
+    }
+    </Script>
+</body>
+</html>

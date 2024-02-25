@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 세 수 중 최솟값</title>
+</head>
+<body>
+    <Script> 
+    //시간복잡도 O(1)
+        function solution(a,b,c){
+            let answer;
+            if(a<b) {
+                answer=a;
+            }
+            else {
+                answer=b;
+            }
+            if(c<answer){
+                answer=c
+            }
+            return answer
+        }
+        console.log(solution(5,8,2));
+    </Script>
+</body>
+</html>
