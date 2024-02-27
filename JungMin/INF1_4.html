@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF]1부터 N까지 합 출력하기</title>
+</head>
+<body>
+    <Script>
+        function solution(n){
+            //선언만 하고 초기화 하지 않으면 값이 undefined가 됨
+            //숫자 0으로 초기화해줘야 값이 제대로 나온다.
+            //시간 복잡도 O(n)
+            let answer=0;
+            for(let i=0; i<=n; i++){
+                answer = answer + i
+            }
+            return answer
+        }
+        console.log(solution(11));
+    </Script>
+</body>
+</html>
