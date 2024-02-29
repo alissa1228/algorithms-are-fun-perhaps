@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 공주 구하기(큐)</title>
+</head>
+<body>
+    <Script>
+        function solution(n,k) {
+            // 숫자 시퀀스 생성하기
+            // (현재 요소의 값, 현재요소의 인덱스) -> 여기에서는 현재 요소 값 필요 X 
+            let queue = Array.from({length:Number(n)}, (_, i) => i+1 );
+            while(queue.length >1) {
+                for(let i=0; i < k-1; i++){
+                    //k-1 까지 큐의 뒤로
+                    queue.push(queue.shift()); //맨 앞의 요소를 맨 뒤로 이동. [1,2,3] ->shift-> 1 -> push -> [2,3,1]
+                }
+                //k번째 날리기
+                queue.shift();
+            }
+            return queue[0]            
+        }
+        console.log(solution(8,3))
+    </Script>
+</body>
+</html>
