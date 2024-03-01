@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF]후위식(postfix) 연산(스택)</title>
+</head>
+<body>
+    <Script>
+        function Operator(x,a,b) {
+            //후위 표기식에서는 먼저 pop된 값이 연산의 오른쪽에 있음.
+            switch(x) {
+                case '*':
+                  return  b*a
+                case '+':
+                  return b+a
+                case '-':
+                  return b-a 
+                case '/':
+                 return  b/a
+            }
+        }
+
+        function solution(s){
+            let answer;
+            let regex = /[0-9]/; //0-9 모든 숫자
+            let stack =[];
+            for(let x of s) {
+                if(!NaN && regex.test(x)){
+                    stack.push(Number(x));
+                }else {
+                    let a= stack.pop();
+                    let b= stack.pop();
+
+                    stack.push(Operator(x, a, b));
+                }
+            }
+            return stack.pop(); //stack 반환
+
+        }
+        console.log(solution('352+*9-'));
+    </Script>
+</body>
+</html>

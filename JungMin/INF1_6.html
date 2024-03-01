@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF]홀수</title>
+</head>
+<body>
+    <Script>
+        //내 답변
+        function solution(...arr){
+            let sum=0;
+            let min = Number.MAX_SAFE_INTEGER;
+            for(let i=0; i<arr.length; i++){
+                if(arr[i] % 2 !== 0) {
+                    sum += arr[i];
+                    if(arr[i] < min)  min = arr[i]
+                }
+            }
+            return `sum: ${sum}, min:${min}`
+           
+        }
+
+        //reduce 사용하기
+        //Spread 연산자 (...) : Spread 연산자는 배열이나 객체의 요소를 확장하여 여러 인자(함수 호출에서)나 배열 요소, 객체 속성(리터럴에서)으로 사용할 수 있게 해준다. 
+        function otherSolution(...arr) {
+            const oddNum = arr.filter(n=> n % 2 !==0);
+            const sum = oddNum.reduce((acc, cur)=> acc+cur,0);
+            //oddNum 개별인자를 전달해 최소값 찾기
+            const min =  Math.min(...oddNum);
+            return `sum: ${sum}, min:${min}`
+        }
+        console.log(otherSolution(12,77,38,41,53,92,85));
+    </Script>
+</body>
+</html>

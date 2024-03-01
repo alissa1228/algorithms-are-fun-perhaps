@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF]최솟값 구하기</title>
+</head>
+<body>
+    <Script>
+        //시간 복잡도 O(n)
+        //나머지 매개변수를 사용해 정해지지 않은 수의 매개변수를 배열로 받을 수 있음.  
+        //'...' : 남아 있는 매개변수를 모아서 배열로 변환
+        function solution(...arr){
+        let answer;
+        let min = Number.MAX_SAFE_INTEGER; //JS에서 안전하게 표현할 수 있는 최대 정수값. 배열 내에서 가장 작은 수를 찾을 때, 비교 시작점을 가장 큰 값으로 설정해 작은 수 보장하기 위함. 
+        for(let i=0; i< arr.length;i++){
+            if(arr[i]<min)  min = arr[i];
+            answer = min
+        }
+        return answer
+
+        }
+        console.log(solution(5,3,7,11,2,15,17));
+    </Script>
+</body>
+</html>

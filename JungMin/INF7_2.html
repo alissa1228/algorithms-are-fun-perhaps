@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 괄호 문자 제거(스택)</title>
+</head>
+<body>
+    <Script>
+        //시간복잡도 O(n)
+        function solution(s){ 
+            let answer;
+            let stack=[];
+            for(let x of s){
+                //닫는 괄호를 만나면
+                if(x === ')'){
+                    //스택의 길이가 0 보다 크고 스택의 가장 마지막(가장 위) 요소가 열린 괄호가 아닐 때까지
+                    while (stack.length > 0 && stack[stack.length - 1] !== '('){
+                    stack.pop(); //괄호 안 문자 제거
+                    }
+                    stack.pop();// 마지막으로 '(' 자체 pop
+                } else {
+                    stack.push(x);
+                }
+            }
+            answer = stack.join("");
+            return answer;
+            //ex - (A(BC)D)
+            // ( -> (A-> (A(BC -> )를 만나서 stack에서 pop() -> (AD  -> 마지막에 )를 만나면 (가 남는데 while 끝난 이후 pop을 추가해 열린 괄호 자체 제거
+        }
+        console.log(solution('(A(BC)D)EF(G(H)(IJ)K)LM(N)'));
+
+        //더 깔끔한 강사님 풀이^^
+        function solution2(s){  
+                let answer;
+                let stack=[];
+                for(let x of s){
+                    if(x===')'){
+                        while(stack.pop()!=='(');
+                    }
+                    else stack.push(x);
+                }
+                answer=stack.join('');
+                return answer;
+            }
+
+            let str="(A(BC)D)EF(G(H)(IJ)K)LM(N)";
+            console.log(solution2(str));
+    </Script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 쇠막대기(스택)</title>
+</head>
+<body>
+    <Script>
+        function solution(s) {
+            let answer=0;
+            let stack = [];
+            for(let i=0; i<s.length; i++) {
+                if(s[i] ==='(') stack.push('(');
+                else{ //닫는 괄호일 때
+                    stack.pop(); //뒤에 pop하게 되면 레이저까지 세버리기 때문에 여기서 빼버리고 진행.
+                    if(s[i-1] ==='(') answer += stack.length;
+                    else {
+                        //닫는 괄호가 아닐 때
+                        answer++
+                    }
+                }
+            }
+            return answer;
+        }
+        let a="()(((()())(())()))(())";
+        console.log(solution(a));
+    </Script>
+</body>
+</html>

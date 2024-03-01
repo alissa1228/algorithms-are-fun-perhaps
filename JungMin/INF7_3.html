@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 크레인 인형뽑기(스택)</title>
+</head>
+<body>
+    <Script>
+   function solution(board, moves) {
+    let answer = 0;
+    let stack= [];
+    moves.forEach(move => {
+        for(let i=0;i<board.length;i++){
+            if(board[i][move-1] !== 0) {
+             let doll = (board[i][move-1]);
+                board[i][move-1]=0 //인형이 빠져나간 자리를 0으로
+                if(stack[stack.length -1] === doll) {
+                    stack.pop();
+                       answer += 2
+                }else {
+                 stack.push(doll);
+                }
+             break;//인형을 하나 뽑았기 때문에 다음 move로 넘어감
+            }
+    }    
+    })
+     return answer
+}
+    </Script>
+</body>
+</html>

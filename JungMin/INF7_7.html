@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 교육과정 설계</title>
+</head>
+<body>
+    <Script>
+        function solution(required, plan) {
+            let answer;
+            let requiredArr = Array.from(required);
+                for(let x of plan) {
+                 if(x === requiredArr[0]) requiredArr.shift();
+                }
+                return requiredArr.length > 0 ? "NO" : "YES"
+        }
+        let required = "CBA"
+        let plan = "CBDAGE"
+        console.log(solution(required, plan));
+    </Script>
+</body>
+</html>
