@@ -6,6 +6,7 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Q03 {
+    // Big-O: O(n^2)
     public static void main(String[] args) throws IOException {
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter stdOut = new BufferedWriter(new OutputStreamWriter(System.out));

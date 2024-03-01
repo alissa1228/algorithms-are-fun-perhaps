@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.Stack;
 
 public class Q02 {
+//    Big-O Notation: O(N)
     public static void main(String[] args) throws IOException {
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter stdOut = new BufferedWriter(new OutputStreamWriter(System.out));
