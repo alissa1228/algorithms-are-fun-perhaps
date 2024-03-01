@@ -17,11 +17,10 @@ public class Q05 {
         int cnt = 0;
         for (int i = 1; i < input.length; i++) {
             if (input[i] == ')') {
+                stack.pop();
                 if (input[i - 1] == input[i]) {
-                    stack.pop();
                     cnt++;
                 } else {
-                    stack.pop();
                     cnt += stack.size();
                 }
             } else {
