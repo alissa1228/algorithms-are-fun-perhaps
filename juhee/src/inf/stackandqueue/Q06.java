@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
  * 공주 구하기
  */
 public class Q06 {
+    // Big-O: O(N)
     public static void main(String[] args) throws IOException {
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter stdOut = new BufferedWriter(new OutputStreamWriter(System.out));
