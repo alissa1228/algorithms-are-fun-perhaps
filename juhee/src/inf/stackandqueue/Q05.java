@@ -7,6 +7,7 @@ import java.util.Stack;
  * 쇠막대기
  */
 public class Q05 {
+    // Big-O: O(N)
     public static void main(String[] args) throws IOException {
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter stdOut = new BufferedWriter(new OutputStreamWriter(System.out));
