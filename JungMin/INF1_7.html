@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 10부제</title>
+</head>
+<body>
+    <Script>
+        function solution(n, car){
+            let answer=0;
+            //문자로 들어오면 문자 자체에 대해 연산을 시도하기 때문에  '3' 문자는 아스키 코드에서 51이므로, 51 % 10 === 3이 참이 되어 '3' 문자가 포함된 모든 경우가 조건을 만족하게 된다...
+            //따라서 숫자 배열로 변경해 연산할 수 있도록 해줘야..
+            let carArr = car.split(" ").map(Number);
+            console.log(carArr)
+            for(x of carArr) {
+                if(x % 10 === n) answer++
+            }
+            return answer
+        }
+        let num = 3;
+        let cars = "25 23 11 47 53 17 33";
+        console.log(solution(num, cars));
+    </Script>
+    
+</body>
+</html>
