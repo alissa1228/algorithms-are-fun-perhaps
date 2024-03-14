@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 뒤집은 소수(브루트 포스)</title>
+</head>
+<body>
+    <Script>
+        //소수 : 자기만을 약수로 가지는 수
+        //각 숫자에 대해 2부터 그 숫자의 제곱근까지 나눗셈을 시도하여 소수를 판별
+        function isPrime(num) {
+        if(num <= 1) return false
+
+        for (let i = 2; i * i <= num; i++) {
+            if (num % i === 0) return false; // 나누어떨어지면 소수가 아님
+        }
+        return true; // 나누어떨어지지 않으면 소수
+        }
+
+
+        //O(n√M)...?
+        function solution(n,nums) {
+            let answer=[];
+            let numsArr = nums.split(" ");
+            for(let x of numsArr) {
+                //뒤집어서 -> 0이 들어가있으면 삭제
+                let resverseNum = x.split("").reverse().join("").replace(/0/g,"");
+                if(isPrime(resverseNum)) answer.push(resverseNum);
+                console.log(resverseNum);
+            }
+           return answer;
+
+        }
+        let num =9;
+        let nums ="32 55 62 20 250 370 200 30 100";
+        console.log(solution(num, nums));
+    </Script>
+</body>
+</html>
