@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] K번째 큰 수(브루트 포스)</title>
+</head>
+<body>
+    <Script>
+
+        //O(n^3)
+        function solution(n,nums) {
+            let answer = new Set;// 중복 제거를 위해 Set 사용
+            for(let i=0; i<n;i++) {
+                for(let j=i+1; j<n; j++) {
+                    for(let k=j+1; k<n; k++) {
+                    let sum = nums[i]+nums[j]+nums[k];
+                    //add() 는 Set 개체의 맨 뒤에 value 요소 추가
+                    answer.add(sum); 
+                }
+                }
+            }
+            //sort 하기 위해 Array로 변경-> 내림차순으로 변경.
+            let sorted = Array.from(answer).sort((a,b) => b-a)
+            return answer= sorted[2]
+
+        }
+        let num = 10
+        let nums =[13,15,34,23,45,65,33,11,26,42]
+        console.log(solution(num, nums));
+    </Script>
+</body>
+</html>
