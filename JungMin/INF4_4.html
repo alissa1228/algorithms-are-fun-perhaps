@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 졸업선물(브루트 포스)</title>
+</head>
+<body>
+    <Script>
+        //O(n^2)
+        //문제 이해 x 강사의 답 이해하려고 함.
+        function solution(m,nums) {
+            let answer=0;
+            let n=nums.length;
+            //총 비용으로 정렬
+            nums.sort((a,b)=> (a[0]+a[1])-(b[0]+b[1]));
+            for(let i=0; i<n;i++) {
+                //총 비용 - (50% 할인된 상품 가격 + 배송비)
+                let money=m-(nums[i][0]/2+nums[i][1]);
+                let cnt=1;
+                for(let j=0; j<n;j++) {
+                    if(j!==i && (nums[j][0]+nums[j][1]) > money) break;
+                    if(j !==i && (nums[j][0]+nums[j][1])<=money){
+                        money-=(nums[j][0]+nums[j][1]);
+                        cnt++;
+                    }
+                }
+                answer=Math.max(answer,cnt);
+            }
+
+            return answer;
+        }
+        let nums =[[6,6],[2,2],[4,3],[4,5],[10,3]];
+        console.log(solution(28, nums));
+    </Script>
+</body>
+</html>

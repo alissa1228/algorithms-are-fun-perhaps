@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 자릿수의 합(브루트 포스)</title>
+</head>
+<body>
+    <Script>
+        function digitSum(num) {
+        let sum = 0;
+        while (num > 0) {
+            sum += num % 10; // 현재 숫자의 마지막 자릿수를 더함
+            num = Math.floor(num / 10); // num을 10으로 나눈 후 결과를 내림해 정수로 만든다 -> 숫자의 가장 오른쪽 자릿수를 제거하는 효과가 있어 다음 자릿수로 이동.
+            
+            //첫 번째 반복: 숫자가 123일 때, 123 % 10 = 3을 sum에 더하고, Math.floor(123 / 10) = 12로 num을 업데이트합니다.
+            //두 번째 반복: 이제 num은 12입니다. 12 % 10 = 2를 sum에 더하고, Math.floor(12 / 10) = 1로 num을 업데이트합니다.
+            //세 번째 반복: 이제 num은 1입니다. 1 % 10 = 1을 sum에 더하고, Math.floor(1 / 10) = 0으로 num을 업데이트합니다. num이 0이 되었으므로 반복이 종료됩니다.
+        
+        }
+        return sum;
+    }
+        //O(n)
+        function solution(n,nums) {
+            let answer=0; //답이 될 자연수
+            let total=0; //자릿수 합
+            let numsArr = nums.split(" ").map(Number);
+            for(x of numsArr) {
+                let currentSum = digitSum(x); // 현재 숫자의 자릿수 합
+                if (currentSum > total) {
+                total = currentSum;
+                answer = x;
+            } else if (currentSum === total) { // 자릿수 합이 같으면 더 큰 숫자를 선택
+                answer = x > answer ? x : answer;
+            }
+
+            }
+            return answer
+        }
+        let num =7;
+        let nums ="128 460 603 40 521 137 123";
+        console.log(solution(num, nums));
+    </Script>
+</body>
+</html>
