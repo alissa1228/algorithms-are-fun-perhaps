@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.StringTokenizer;
 
 /**
- * 멘토링
+ * 멘토링: O(n^3)
  */
 public class Q03 {
     public static void main(String[] args) throws IOException {
