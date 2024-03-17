@@ -3,6 +3,9 @@ package inf.bruteforce;
 import java.io.*;
 import java.util.StringTokenizer;
 
+/**
+ * 자릿수의 합 O(n^2)
+ */
 public class Q01 {
     public static void main(String[] args) throws IOException {
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
