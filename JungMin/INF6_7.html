@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 좌표 정렬</title>
+</head>
+
+<body>
+    <script>
+        //sort가 주요 연산이므로 O(nlogn)
+        //sort() 메서드의 시간 복잡도는 평균적으로 nlogn번의 비교와 이동이 필요하기 때문.
+        function solution(arr) {
+            arr.sort((a,b)=> {
+                //x좌표가 같으면
+                if(a[0] === b[0]){
+                    //y기준으로 오름차순
+                   return a[1]-b[1]
+                }else {
+                    //아니라면 x기준으로 오름차순
+                    return a[0]-b[0];
+                }   
+            })  
+
+            return arr;
+        }
+            let Arr = [[2, 7], [1, 3], [1, 2], [2, 5], [3, 6]];
+            console.log(solution(Arr));
+    </script>
+</body>
+
+</html>
