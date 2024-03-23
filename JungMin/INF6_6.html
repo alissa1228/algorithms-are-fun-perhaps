@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 장난꾸러기 현수</title>
+</head>
+<body>
+    <script>
+        //O(n)
+        //학생들의 키 정보가 일렬로 주어졌을 때, 현수와 짝꿍이 자리를 바꾼 상태이므로, 원래 순서대로 정렬되어 있지 않음.
+        //원래 키 순서대로 서있었다면, 각 학생의 키는 이전 학생의 키보다 크거나 같아야 함.
+        //원래 순서대로 정렬되어 있지 않은 두 학생(즉, 두 번호)이 바로 현수와 짝꿍입니다.
+        //이 두 학생(현수와 짝꿍)을 찾기 위해, 원본 배열을 복사하여 정렬한 뒤, 
+        //원본 배열과 정렬된 배열을 비교하여 순서가 다른 요소를 찾아야햠.
+        function solution(arr){
+        
+        //배열 복사
+        let copySorted = [...arr].sort((a,b)=> a-b);
+        let whosTheSuspects = [];
+        
+        for(let i=0; i<= arr.length;i++){
+            if(arr[i] !== copySorted[i]){
+                //1번부터 학생 번호를 매겼다고 했으니까 i+1 해줘야.
+                whosTheSuspects.push(i+1)
+            }
+        }
+        return whosTheSuspects;
+        }
+        let heights =[120, 125, 152, 130, 135, 135, 143, 127, 160
+];
+        console.log(solution(heights));
+    </script>
+</body>
+</html>
