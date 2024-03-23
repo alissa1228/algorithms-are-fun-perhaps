@@ -1,28 +1,31 @@
 package inf.stackandqueue;
 
 import java.io.*;
-import java.util.Stack;
+import java.util.*;
 
-public class Q01 {
-    // Big-O: O(N)
+/**
+ * 교육과정 설계
+ */
+public class Q07 {
     public static void main(String[] args) throws IOException {
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter stdOut = new BufferedWriter(new OutputStreamWriter(System.out));
-        Stack<Character> stack = new Stack<>();
+
+        String mc = stdIn.readLine();
+        Queue<Character> queue = new LinkedList<>();
         String answer = "YES";
-        char[] input = stdIn.readLine().toCharArray();
-        for (int i = 0; i < input.length; i++) {
-            if (input[i] == ')') {
-                if (!stack.isEmpty() && stack.pop() == '(') continue;
-                else {
+        for (int i = 0; i < mc.length(); i++) queue.offer(mc.charAt(i));
+        char[] cc = stdIn.readLine().toCharArray();
+        for (int i = 0; i < cc.length; i++) {
+            if (mc.contains(String.valueOf(cc[i]))) {
+                if (queue.peek() != cc[i]) {
                     answer = "NO";
                     break;
                 }
-            } else {
-                stack.push(input[i]);
+                queue.poll();
             }
         }
-        if (!stack.isEmpty()) answer = "NO";
+        if (!queue.isEmpty()) answer = "NO";
         stdOut.write(answer);
         stdOut.flush();
         stdOut.close();

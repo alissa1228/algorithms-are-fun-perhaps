@@ -7,6 +7,7 @@ import java.util.Stack;
  * 후위식 연산(postfix)
  */
 public class Q04 {
+    // Big-O: O(N)
     public static void main(String[] args) throws IOException {
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter stdOut = new BufferedWriter(new OutputStreamWriter(System.out));
