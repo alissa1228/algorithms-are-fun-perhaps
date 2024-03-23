@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] LRU</title>
+</head>
+<body>
+    <script>
+        //O(n)
+        //캐시에서 작업을 제거할 때 가장 오래 사용하지 않은 작업을 제거하는 알고리즘
+        function solution(size, arr){
+            let cache = [];
+            //arr을 다 돌면서 캐시 메모리에 들어가게 
+            for(let i=0; i< arr.length;i++){
+               
+                //cache에 이미 있다면 해당 인덱스를 찾아 삭제
+                let idx = cache.indexOf(arr[i]);
+                if(idx !== -1) cache.splice(idx,1); //(삭제할 인덱스, 삭제할 갯수)
+                //캐시추가
+                cache.unshift(arr[i]);
+                //캐시 메모리 길이가 넘어가면 맨 끝을 pop
+                if(cache.length>size) {
+                        cache.pop();
+                }
+            }
+          return cache
+
+        }
+        let cacheSize = 5;
+        let nums =[1,2,3,2,6,2,3,5,7]
+        console.log(solution(cacheSize,nums));
+    </script>
+</body>
+</html>
