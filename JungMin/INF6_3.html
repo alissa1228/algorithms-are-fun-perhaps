@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 버블 정렬 활용</title>
+</head>
+
+<body>
+    <script>
+        //O(n)
+        function solution(arr) {
+            let minor = [];
+            let plus = [];
+            for (let x of arr) {
+
+                if (x < 0) {
+                    minor.push(x)
+                } else {
+                    plus.push(x);
+                }
+            }
+            arr = minor.concat(plus)
+            return arr;
+        }
+        let bubble = [1, 2, 3, -3, -2, 5, 6, -6]
+        console.log(solution(bubble));
+    </script>
+</body>
+
+</html>
