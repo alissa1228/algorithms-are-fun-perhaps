@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 결혼식</title>
+</head>
+
+<body>
+    <script>
+        //O(nlogn)
+        function solution(arr) {
+
+            //start 와 end를 분리해서 따로 담기
+            let events = [];
+            arr.forEach(element => {
+                events.push({time:element[0], type:'start'});
+                events.push({time:element[1], type:'end'});
+            });
+
+            //localeCompare() -> 문자열을 비교해 정렬 순서에 따라 주어진 문자열보다 앞에 오는지, 뒤에 오는지 또는 동일한지 여부를 나타내는 숫자를 반환(-1,0,1)
+            //시간 순으로 정렬(5,12,14...순으로 )
+            //만약 시간이 같다면 이벤트의 유형에 따라 정렬 수행. end 이벤트를 먼저 처리. end 가 start보다 앞서게 함.(떠나는 사람을 먼저 처리)
+            events.sort((a, b) => a.time - b.time || a.type.localeCompare(b.type));
+
+            let cnt = 0;
+            let max = 0;
+            
+            events.forEach((event)=>{
+                //start면 
+                if(event.type === 'start'){
+                    cnt++
+                }else {
+                    cnt--
+                }
+                max = Math.max(max,cnt);
+            });
+            return max;
+        }
+            let Arr = [[14, 18], [12, 15], [15, 20], [20, 30], [5, 14]];
+            console.log(solution(Arr));
+    </script>
+</body>
+
+</html>
