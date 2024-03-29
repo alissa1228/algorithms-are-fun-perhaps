@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 마구간 정하기</title>
+</head>
+
+<body>
+    <script>
+        //가장 가까운 두 말 사이의 거리가 실제로 가능한 거리인지 검증.
+        function countHorses(arr, distance ){
+            let count =1; //첫번째 말은 이미 배치된 걸로 시작함
+            let lastPosition = arr[0] //첫번째 말 위치
+            
+            //현재 마굿간에 말을 배치할 수 있는지 확인
+             for(let i=1; i< arr.length;i++){
+                //mid로 보낸 distance(최소 간격) 이상 떨어져 있다면 마굿간에 말 하나 더 배치,
+                //해당 마굿간의 위치를 '마지막으로 말이 배치된 마굿간'으로 갱신.  
+                if(arr[i] - lastPosition >= distance){
+                    count++;
+                    lastPosition = arr[i];
+                }
+             }   
+             //모두 순회한 후 배치된 말의 총수를 반환.
+            return count;
+        }
+        //O(NlogN)
+        function solution(arr,num){
+        //마구간 좌표 정렬
+        arr.sort((a,b)=> a-b);
+        
+        let left = 1;// 가능한 최소 거리
+        let right = arr[arr.length-1] - arr[0] // 가능한 최대 거리
+        let answer =0;
+
+        //이진탐색 사용 -> 최대 거리 찾기
+        while(left<=right){
+            let mid = Math.floor((left+right)/2); //중간값을 최소 거리로 지정
+            //주어진 거리를 최소 간격으로 해 말을 배치할 수 있는지 확인, 할 수 있다면 거리를 증가해 더 큰 거리 탐색, 
+            //할 수 없다면 거리 감소해 다시 시도. -> 반복해 최대 거리 찾기
+            if(countHorses(arr, mid)>= num){
+                answer = mid;
+                left = mid +1;  //더 큰 거리 탐색
+            }else {
+                right = mid -1 //더 작은 거리 탐색
+            }
+        }
+        return answer;
+        }
+        let arr=[1,2,8,4,9];
+        let horses = 3
+        console.log(solution(arr, horses));
+    </script>
+</body>
+
+</html>
