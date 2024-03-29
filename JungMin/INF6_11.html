@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 뮤직비디오(결정 알고리즘)</title>
+</head>
+
+<body>
+    <script>
+        function isPossibleToRecord(songs, m, dvdSize) {
+            let dvdCount = 1;
+            let sumLength = 0;
+
+            for (let song of songs) {
+                if (sumLength + song > dvdSize) {  // 현재 DVD에 더 이상 녹화할 수 없다면 새 DVD로 교체
+                    dvdCount += 1;
+                    sumLength = song;
+                } else {
+                    sumLength += song;
+                }
+            }
+
+            return dvdCount <= m;  // 사용한 DVD 개수가 m개 이하인지 확인
+        }
+
+        function findMinDvdSize(songs, m) {
+            let left = Math.max(...songs);  // 가능한 DVD 크기의 최소값: 가장 긴 곡의 길이
+            let right = songs.reduce((a, b) => a + b, 0);  // 가능한 DVD 크기의 최대값: 모든 곡의 길이 합
+            let answer = 0;
+
+            while (left <= right) {
+                let mid = Math.floor((left + right) / 2);  // 현재 검사하는 DVD 크기
+
+                if (isPossibleToRecord(songs, m, mid)) {  // 현재 크기의 DVD로 녹화 가능하면 더 작은 크기 탐색
+                    answer = mid;
+                    right = mid - 1;
+                } else {  // 불가능하면 더 큰 크기 탐색
+                    left = mid + 1;
+                }
+            }
+
+            return answer;
+        }
+
+        // 입력 예제
+        const N = 9, M = 3;  // 곡의 개수 N과 DVD의 개수 M
+        const songs = [1, 2, 3, 4, 5, 6, 7, 8, 9];  // 각 곡의 길이
+
+        // DVD의 최소 용량 크기를 찾는 함수 호출
+        console.log(findMinDvdSize(songs, M));
+
+    </script>
+</body>
+
+</html>
