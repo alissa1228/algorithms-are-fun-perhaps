@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 이분 검색</title>
+</head>
+
+<body>
+    <script>
+        //O(nlogn)
+        function solution(arr, num) {
+            let answer=0;
+            //오름차순으로 먼저 정렬
+            arr.sort((a, b) => a - b); //sort 메소드 O(nlogn)
+
+
+            let start = 0; //첫번 째 요소
+            let end = arr.length - 1; //마지막 요소
+
+            //시작과 끝을 기반으로 반복 설정
+            while (start <= end) { //이분 검색 복잡도는 O(logn)
+                let mid = Math.floor((start + end) / 2);
+
+                if (arr[mid] === target) {
+                    return mid; // 목표 값을 찾았을 때 해당 인덱스 반환
+                } else if (arr[mid] < target) {
+                    start = mid + 1; // 목표 값이 중간값보다 크면, 검색 범위를 오른쪽 절반으로 조정
+                } else {
+                    end = mid - 1; // 목표 값이 중간값보다 작으면, 검색 범위를 왼쪽 절반으로 조정
+                }
+            }
+
+            return -1; // 목표 값을 찾지 못했을 때
+
+
+
+        }
+            let Arr = [23,87,65,12,5,32,99,81];
+            let num = 32
+            console.log(solution(Arr,num));
+    </script>
+</body>
+
+</html>
