@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>더 맵게</title>
+</head>
+
+<body>
+    <script>
+        //O(nlogn)
+        function solution(scoville, K) {
+            let answer = 0;
+            scoville.sort((a, b) => a - b); // 초기 배열을 오름차순으로 정렬
+
+            //최소 힙 구현
+            //부모 노드가 자식 노드보다 항상 작아거나 같아야 하는 트리기반 자료 구조
+            function minHeapify(index) {
+                let smallest = index; //현재 검사하는 노드
+                let left = 2 * index + 1; //현재 노드의 왼쪽 자식 노드의 인덱스
+                let right = 2 * index + 2; //현재 노드의 오른쪽 자식 노드의 인덱스
+
+                if (left < scoville.length && scoville[left] < scoville[smallest]) {
+                    smallest = left;
+                }
+                if (right < scoville.length && scoville[right] < scoville[smallest]) {
+                    smallest = right;
+                }
+                if (smallest !== index) {
+                    [scoville[index], scoville[smallest]] = [scoville[smallest], scoville[index]];
+                    minHeapify(smallest);
+                }
+            }
+
+            function insert(value) {
+                scoville.push(value);
+                let currentIndex = scoville.length - 1;
+                let parentIndex = Math.floor((currentIndex - 1) / 2);
+
+                while (currentIndex > 0 && scoville[parentIndex] > scoville[currentIndex]) {
+                    [scoville[parentIndex], scoville[currentIndex]] = [scoville[currentIndex], scoville[parentIndex]];
+                    currentIndex = parentIndex;
+                    parentIndex = Math.floor((currentIndex - 1) / 2);
+                }
+            }
+
+            function extractMin() {
+                if (scoville.length === 0) return null;
+                if (scoville.length === 1) return scoville.pop();
+
+                const min = scoville[0];
+                scoville[0] = scoville.pop();
+                minHeapify(0);
+                return min;
+            }
+
+            while (scoville.length > 1 && scoville[0] < K) {
+                const first = extractMin();
+                const second = extractMin();
+                const mixedScoville = first + second * 2;
+                insert(mixedScoville);
+                answer++;
+            }
+
+            return scoville[0] < K ? -1 : answer;
+        }
+
+    </script>
+</body>
+
+</html>

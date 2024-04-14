@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>체육복</title>
+</head>
+<body>
+    <script>
+        //O(n)
+    function solution(n, lost, reserve) {
+        // 객체를 사용하여 집합과 같은 기능을 구현
+        const reserveOnly = reserve.filter(r => !lost.includes(r));
+        const lostOnly = lost.filter(l => !reserve.includes(l));
+        
+        // 체육수업을 들을 수 있는 학생 수 초기화
+        let answer = n - lostOnly.length;
+
+        // 여벌 체육복이 있는 학생들로부터 체육복을 빌려주기
+        reserveOnly.forEach(r => {
+            const before = lostOnly.indexOf(r - 1);
+            const after = lostOnly.indexOf(r + 1);
+            
+            if (before !== -1) {
+                lostOnly.splice(before, 1);
+                answer += 1;
+            } else if (after !== -1) {
+                lostOnly.splice(after, 1);
+                answer += 1;
+            }
+        });
+
+        return answer;
+    }
+
+    </script>
+</body>
+</html>
