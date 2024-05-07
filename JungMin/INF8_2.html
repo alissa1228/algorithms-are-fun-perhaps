@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 이진수 출력(재귀)</title>
+</head>
+<body>
+    <script>
+        function solution(n){
+            let answer = "";
+            function DFS(L){
+                if(L===0) return;
+                else{
+                    //2로 나눠서 나온 나머지가 필요하기 때문에 2씩 나누기
+                    DFS(parseInt(L/2));
+                    //남은 나머지를 문자열로 변환하여 answer에 더하기(string이라 숫자가 더해지는 게 아니라 1011처럼 붙음)
+                    answer+=String(L%2);
+                }
+            }
+            DFS(n);
+            return answer;
+        }
+        console.log(solution(11));
+        </script>
+</body>
+</html>
