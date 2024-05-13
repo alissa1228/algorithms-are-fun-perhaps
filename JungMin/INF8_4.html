@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>부분집합 구하기(DFS)</title>
+</head>
+
+<body>
+    <script>
+        function solution(n) {
+            let answer = [];
+            //체크용 배열(n번째까지의 숫자를 체크할 배열), 0으로 초기화 (인덱스번호 0-3까지 생성)
+            let ch = Array.from({ length: n + 1 }, () => 0);
+            function DFS(v) {
+                if (v === n + 1) {
+                    let tmp = "";
+                    //종착점 도착, 부분집합 완성. 
+                    //이 때 ch배열을 돌면서 1로 들어온 것들만 출력.
+                    for(let i=1;i<=n;i++){
+                        if(ch[i]===1) tmp+=(i+" ");
+                    }
+                    if(tmp.length>0) answer.push(tmp.trim());
+                } else {
+                    //v라는 원소를 포함하는 경우
+                    ch[v] = 1;
+                    //가지 뻗기
+                    DFS(v + 1);
+                    //v라는 원소를 포함하지 않는 경우
+                    ch[v] = 0
+                    //가지 뻗기
+                    DFS(v + 1);
+                }
+            }
+
+            DFS(1);
+            return answer;
+        }
+        console.log(solution(3));
+    </script>
+</body>
+
+</html>

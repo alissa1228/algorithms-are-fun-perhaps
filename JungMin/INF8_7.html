@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>최대점수 구하기(DFS)</title>
+</head>
+
+<body>
+    <script>
+        function solution(m,pr,pt) {
+            let answer = Number.MIN_SAFE_INTEGER;
+            let n = pr.length;
+            //제한 시간 안에 문제를 풀 건지 말건지
+            function DFS(L, sum, time) {
+    
+                if (time > m) return;
+                if (L === n) {
+                    answer = Math.max(answer, sum);
+                } else {
+                    DFS(L + 1, sum + pr[L], time + pt[L]);  //L번째 문제를 풀었을 때
+                    DFS(L + 1, sum, time);//L번째 문제를 풀지 않았을 때
+                }
+            }
+            DFS(0, 0, 0);
+            return answer;
+        }
+        // let arr = [
+        //     //문제 개수 N, 제한시간 M
+        //     [5, 20],
+        //     //여기서부터 문제를 풀었을 때 점수, 걸리는 시간
+        //     [10, 5],
+        //     [25, 12],
+        //     [15, 8],
+        //     [6, 3],
+        //     [7, 4]
+        // ];
+        // 제한시간
+        let m = 20;
+        let pr = [10,25,15,6,7];
+        let pt = [5,12,8,3,4];
+        console.log(solution(m,pr,pt));
+    </script>
+</body>
+
+</html>

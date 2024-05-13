@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>바둑이 승차(DFS)</title>
+</head>
+<body>
+    <script>
+        function solution(w, arr){
+            let answer = Number.MIN_SAFE_INTEGER;
+            let n = arr.length;
+            function DFS(L,sum){
+                //L은 인덱스 번호, sum은 바둑이 무게
+                if(L===n){
+                    if(sum<=w){
+                        //최대한 태운 무게와 비교해서 더 큰 값을 answer에 저장
+                        answer = Math.max(answer,sum);
+                    }
+                }else {
+                    DFS(L+1,sum+arr[L]);
+                    DFS(L+1,sum);
+                }
+            }
+            DFS(0,0);
+            return answer;
+        }
+        let w = 259; //최대한 태울 수 있는 무게
+        let arr = [81, 58, 42, 33, 61]; //N마리의 각 바둑이 무게
+        console.log(solution(w,arr));
+    </script>
+</body>
+</html>
