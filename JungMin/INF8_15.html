@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수들의 조합</title>
+</head>
+
+<body>
+    <script>
+        //n개의 정수가 주어지고 개중 k개를 뽑는 조합의 합이 임의의 정수 m의 배수인 개수가 몇 개인지 구하기
+        function solution(k, arr, m) {
+            let answer = 0;
+            let n= arr.length;; //5
+
+            function DFS(L, s, sum) {
+                //3개 뽑았을 때
+                if(L === k){
+                    //더한 값을 m으로 나눈 나머지가 0이면 answer++
+                    if(sum % m === 0){
+                        answer++;
+                    }
+                }else{
+                    //s부터 n까지의 숫자를 조합에 추가
+                    for(let i=s;i<n;i++){
+                        //i=s일 때 sum에 arr[i]값을 더해줌
+                        DFS(L+1, i+1, sum+arr[i]);
+                    }
+                }
+            }
+            DFS(0, 0, 0);
+            return answer;
+        }
+       
+        let k = 3;
+        let arr= [2,4,5,8,12]; //5
+        let m = 6; //6의 배수인 개수가 몇 개가 있는지
+        console.log(solution(k, arr, m));
+    </script>
+</body>
+
+</html>
