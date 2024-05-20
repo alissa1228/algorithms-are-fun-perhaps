@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수열 추측하기(순열,이항계수 응용)</title>
+</head>
+
+<body>
+    <script>
+        //가장 윗줄에 있는 수 구하기
+          function solution(n,last) {
+            let answer, flag=0; //flag : 결과를 찾았는지 확인하는 변수
+                 //조합 수 저장을 위한 2차원 배열(메모이제이션)
+                let dy= Array.from(Array(11), () => Array(11).fill(0));
+                let ch=Array.from({length:n+1}, ()=>0); //순열에서 숫자가 사용되었는지 확인하는 배열, 사용체크
+                let p=Array.from({length:n}, ()=>0); //현재 순열을 저장하는 배열
+                let b=Array.from({length:n}, ()=>0); //조합 수를 저장하는 배열
+
+                //조합을 재귀적으로 계산(메모이제이션을 사용해 중복계산을 피함)
+                function combi(n, r){
+                    //이미 계산된 값이라면 바로 리턴
+                    if(dy[n][r]>0) return dy[n][r];
+                    if(n===r || r===0) return 1;
+                    //조합수 구하기
+                    else return dy[n][r]=combi(n-1, r-1)+combi(n-1, r);
+                }
+                function DFS(L, sum){
+                    if(flag) return; //flag가 1이면 return
+                    //해당 조건에서 가장 윗줄에 있는 수를 찾았을 때 answer에 저장 후 Flag=1로 변경
+                    if(L===n && sum===f){
+                        answer=p.slice();
+                        flag=1;
+                    }
+                    else{
+                        //그렇지 않으면..
+                        //1부터 n까지의 숫자를 순열에 추가
+                        //사용되지 않은 숫자를 순열에 추가
+                        for(let i=1; i<=n; i++){
+                            if(ch[i]===0){
+                                ch[i]=1;
+                                p[L]=i;
+                                //조합 수를 곱해 sum에 더한 값을 다음 호출에 전달
+                                DFS(L+1, sum+(b[L]*p[L]));
+                                ch[i]=0;
+                            }
+                        }
+                    }
+                }
+                for(let i=0; i<n; i++){
+                    b[i]=combi(n-1, i);
+                }
+                DFS(0, 0);
+                return answer;
+            }
+        //n은 가장 윗줄에 있는 숫자의 개수
+        //f는 가장 밑에 줄에 있는 수. 위 두 숫자들의 합
+        let n = 4;
+        let last = 16;
+        console.log(solution(n,last));
+    </script>
+</body>
+
+</html>
