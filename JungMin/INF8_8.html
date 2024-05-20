@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>중복순열</title>
+</head>
+
+<body>
+    <script>
+        function solution(n,m) {
+            let answer = [];
+            function DFS(arr) {
+            //arr의 길이가 m과 같아지면 answer에 추가
+            if (arr.length === m) {
+            answer.push(arr.join(' '));
+            return;
+            }
+            //1부터 n까지 번호가 적힌 구슬
+            for (let i = 1; i <= n; i++) {
+            //현재 arr에 숫자 i를 추가한 배열을 넣어주고 DFS를 호출
+            //DFS([1]) -> DFS([1,1])-> arr길이가 m과 같아짐 -> answer에 추가
+            //DFS[1,2] -> arr길이가 m과 같아짐 -> answer에 추가
+            //DFS[1,3] -> arr길이가 m과 같아짐 -> answer에 추가
+            //..DFS[3]~DFS[3,3]까지 반복
+            DFS(arr.concat(i));
+            }
+        }
+        
+        DFS([]);
+        answer.forEach(seq => console.log(seq)); //모든 결과 출력
+
+        }
+       let n=3 //1부터 n까지 번호가 적힌 구슬
+       let m=2 //중복을 허용해 m번 뽑는다.
+        console.log(solution(n,m));
+    </script>
+</body>
+
+</html>
