@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>순열 구하기</title>
+</head>
+
+<body>
+    <script>
+        //n개의 자연수 중 m개를 뽑아 일열로 나열하는 방법을 모두 출력
+        function solution(m,arr) {
+            let answer = [];
+            //자연수 갯수 3
+            let n = arr.length;
+            let lng = 0;
+          
+            function DFS(res) {
+                //res의 길이가 m과 같아지면 answer에 추가
+                if (res.length === m) {
+                    if(res[0] !== res[1]){
+                        answer.push(res.join(' '));
+                        lng++; //push할 때마다 길이 증가
+                    }
+                } else {
+                    for (let i = 0; i < n; i++) {
+                        DFS(res.concat(arr[i]));
+                    }
+                }
+
+            }
+            DFS([]);
+            return {answer, lng};
+        }
+        let m = 2; //뽑을 갯수
+        let arr = [3,6,9]; //n개의 자연수 배열
+        console.log(solution(m,arr));
+    </script>
+</body>
+
+</html>

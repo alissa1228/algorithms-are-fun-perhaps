@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동전교환(DFS-Cut Edge Tech)</title>
+</head>
+
+<body>
+    <script>
+        //여러 단위의 동전들이 있을 때, 거스름돈을 가장 적은 수의 동전으로 교환하기
+        function solution(money, coins) {
+            let answer = Number.MAX_SAFE_INTEGER;
+            let n = coins.length;
+
+            //cnt은 동전의 개수, sum은 동전의 합
+            function DFS(cnt, sum) {
+                //동전의 합이 money보다 많아지면 return
+                if (sum > money) return;
+                //동전의 개수가 answer보다 같거나 크면 return
+                if (cnt >= answer) return;
+                //동전의 합이 money와 같아지면 answer에 cnt를 할당
+                if (sum === money) {
+                    answer = Math.min(answer, cnt);
+                }
+                else {
+                    // 각 동전을 사용하여 재귀 호출
+                    for (let i = 0; i < n; i++) {
+                        DFS(cnt + 1, sum + coins[i]);                  
+                    }
+                }
+            }
+            DFS(0, 0);
+            return answer;
+        }
+        let coins = [1, 2, 5]; //동전의 종류
+        let money = 15; //거슬러 줄 금액
+        console.log(solution(money, coins));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조합수(메모이제이션)</title>
+</head>
+
+<body>
+    <script>
+        //nCr n개의 카드 중에 r개를 뽑는 경우의 수
+
+        function solution(n, r) {
+            let answer = [];
+            //메모이제이션을 위한 2차원 배열, 주어진 문제 조건에서 n의 최댓값이 33이라 35로 설정
+            //2차월 배열을 만들어서 0으로 초기화
+            let dy = Array.from(Array(35), () => Array(35).fill(0));
+
+            function DFS(n, r) {
+                //dy[n][r] 중복계산 피하기. 동일한 계산을 반복하지 않도록
+                if (dy[n][r] > 0) return dy[n][r]; //이미 계산된 값이라면 바로 리턴
+
+                // 기저 조건: nC0 = 1, nCn = 1
+                // DFS(3, 3) =1
+                if (n === r || r === 0) {
+                    return 1;
+                } else {
+                    //dy[n][r]에 계산된 값을 저장
+
+                    // DFS(5, 3)
+                    // = DFS(4, 2) + DFS(4, 3)
+                    // = 6 + 4 (아래 DFs(4, 2)에서 계산된 값+기저조건이 사용됨
+
+                    // DFS(4, 2)
+                    // = DFS(3, 1) + DFS(3, 2)
+                    // = 3 + 3 (아래 DFs(3, 1)에서 계산된 값+기저조건이 사용됨
+                    // = 6
+
+                    // DFS(4, 3)
+                    // = DFS(3, 2) + DFS(3, 3)
+                    // = 3 + 1 (아래 DFs(3, 2)에서 계산된 값+기저조건이 사용됨
+                    1                    // = 4
+
+                    // DFS(3, 1)
+                    // = DFS(2, 0) + DFS(2, 1)
+                    // = 1 + (DFS(1, 0) + DFS(1, 1))
+                    // = 1 + (1 + 1)
+                    // = 3
+
+                    // DFS(3, 2)
+                    //= DFS(2, 1) + DFS(2, 2)
+                    // = (DFS(1, 0) + DFS(1, 1)) + 1
+                    // = (1 + 1) + 1
+                    //= 3
+
+                    return dy[n][r] = DFS(n - 1, r - 1) + DFS(n - 1, r);
+                }
+            }
+            answer = DFS(n, r);
+            return answer;
+        }
+        //조합수
+        let n = 5;
+        let r = 3;
+        console.log(solution(n, r));
+
+
+        /*원래의 공식을 사용했을 때는 아래처럼 사용
+        function combination(n, r) {
+        // 조합의 기본 정의에 따른 재귀 함수
+        if (r === 0 || n === r) {
+            return 1; // 기저 조건: nC0 = 1, nCn = 1
+        }
+        return combination(n - 1, r - 1) + combination(n - 1, r);
+        }
+
+        // 예제 실행
+        let n = 5;
+        let r = 3;
+        console.log(combination(n, r)); // 출력: 10
+        */
+
+    </script>
+</body>
+
+</html>

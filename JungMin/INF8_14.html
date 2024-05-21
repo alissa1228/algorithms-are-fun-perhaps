@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조합 구하기</title>
+</head>
+
+<body>
+    <script>
+        function solution(n,m) {
+            let answer = [];
+            //조합 수 저장을 위한 2차원 배열(메모이제이션)
+            let tmp = Array.from({length:m}, () => 0);
+            let lng = 0;
+            function DFS(L, s) {
+                //L이 m값인 2일 때 answer에 추가
+                if(L === m){
+                    if(tmp[0] !== tmp[1]);
+                    answer.push(tmp.join(' '));
+                    lng++
+
+                }else{
+                    //s부터 n까지의 숫자를 조합에 추가
+                    for(let i=s;i<=n;i++){
+                        //i=s일 때 tmp[L]에 i값을 넣어줌
+                        tmp[L] = i;
+                        DFS(L+1, i+1);
+                    }
+                }
+            }
+            DFS(0,1);
+            return {answer, lng};
+        }
+        let n = 4;
+        let m = 2;
+        console.log(solution(n,m));
+    </script>
+</body>
+
+</html>
