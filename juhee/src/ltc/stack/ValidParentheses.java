@@ -1,4 +1,4 @@
-package ltc;
+package ltc.stack;
 
 import java.util.HashMap;
 import java.util.Map;
