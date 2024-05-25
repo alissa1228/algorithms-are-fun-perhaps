@@ -3,7 +3,9 @@ package ltc.heap;
 import java.util.*;
 
 public class SmallestInfiniteSet {
+    // 최소값 탐색을 위한 PriorityQueue 초기화
     PriorityQueue<Integer> pq = new PriorityQueue<>();
+    // 중복 검증을 위한 Set 초기화
     Set<Integer> set = new HashSet();
     public SmallestInfiniteSet() {
         for (int i = 1; i <= 100 ;i++) {
