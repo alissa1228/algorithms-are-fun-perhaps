@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[PRG] 달리기 경주</title>
+</head>
+
+<body>
+    <Script>
+        function solution(players, callings) {
+            let playersRank = {}
+            //기존 플레이어들 랭킹 맵핑
+            players.forEach((e, i) => {
+                playersRank[e] = i;
+            });
+            callings.forEach((e) => {
+                //현재 플레이어의 랭킹
+                let currentRank = playersRank[e];
+                //이전 플레이어의 랭킹(현재 플레이어의 랭킹 - 1)
+                let previousPlayer = players[currentRank - 1];
+                if (currentRank > 0) {
+                    // players 배열에서 두 플레이어의 위치를 교환
+                    [players[currentRank - 1], players[currentRank]] = [players[currentRank], players[currentRank - 1]];
+
+                    // playersRank 객체에서 두 플레이어의 랭킹을 업데이트
+                    playersRank[e]--;
+                    playersRank[previousPlayer]++;
+                }
+
+            })
+            //아래 코드 썼다가 메모리 초과로 인해 주석처리
+            //let rank = players.indexOf(e);
+            //   if (rank > 0) { 
+            //       [players[rank - 1], players[rank]] = [players[rank], players[rank - 1]];
+            //}
+
+            return players;
+        }
+
+        /*
+        //이런 식으로도 짤 수 있음
+                
+        function solution(players, callings) {
+            let idx;
+            let name1;
+            let name2;
+            const idxList = {}
+
+            players.forEach((name,index)=>idxList[name]=index)
+            for(let call of callings){
+                idx = idxList[call]
+                name1 = players[idx]
+                name2 = players[idx-1]
+                idxList[call]-=1
+                idxList[name2]+=1
+                players[idx] = name2
+                players[idx-1] = name1
+            }    
+
+            return players;
+        }
+        
+        */
+    </Script>
+</body>
+
+</html>
