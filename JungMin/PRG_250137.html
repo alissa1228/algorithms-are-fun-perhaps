@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[PRG] 붕대감기</title>
+</head>
+
+<body>
+    <script>
+        function solution(bandage, health, attacks) {
+            let currHealth = health;
+            let currTime = 0;
+
+            for (let [attackTime, damage] of attacks) {
+                let diffTime = attackTime - currTime - 1;
+                currHealth += diffTime * bandage[1] + Math.floor(diffTime / bandage[0]) * bandage[2];
+
+                if (currHealth > health) currHealth = health;
+                currHealth -= damage;
+                if (currHealth <= 0) return -1;
+                currTime = attackTime;
+            }
+
+            return currHealth;
+        }
+        const bandage = [5, 1, 5];
+        const health = 30;
+        const attacks = [[2, 10], [9, 15], [10, 5], [11, 5]];
+
+        console.log(solution(bandage, health, attacks)); 
+    </script>
+</body>
+
+</html>
