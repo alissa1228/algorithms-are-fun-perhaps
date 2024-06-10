@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[PRG] 가장 많이 받은 선물</title>
+</head>
+
+<body>
+    <script>
+        function solution(friends, gifts) {
+            const length = friends.length
+            //각 친구들 선물 지수 저장할 배열, 초기값 0으로 채움
+            const giftPoints = new Array(length).fill(0)
+            //친구들 이름을 배열 인덱스로 매핑할 객체
+            const index = {}
+          
+            const record = []
+            //다음 달 받을 선물 횟수 저장할 배열, 초기값 0으로 채움
+            const points = new Array(length).fill(0)
+            for (let i = 0; i < length; i++) {
+                  //친구들 간 선물 교환 기록 저장할 2차원 배열, 0으로 채움
+                record[i] = new Array(length).fill(0)
+                //친구들 이름을 배열 인덱스로 매핑
+                index[friends[i]] = i
+            }
+            //선물 주고 받기 기록 및 선물 지수 계산
+            for (const gift of gifts) {
+                //선물 주는 친구와 받는 친구 구분
+                const [giver, taker] = gift.split(' ')
+                record[index[giver]][index[taker]] += 1
+                giftPoints[index[giver]] += 1
+                giftPoints[index[taker]] -= 1
+            }
+            for (let i = 0; i < length; i++) {
+                for (let j = 0; j < length; j++) {
+                    if (record[i][j] > record[j][i]) {
+                        points[i] += 1
+                    } else if (record[i][j] === record[j][i]) {
+                        if (giftPoints[i] > giftPoints[j]) {
+                            points[i] += 1
+                        }
+                    }
+                }
+            }
+            return Math.max(...points)
+        }
+
+        let friends = ["muzi", "Ryan", "frodo", "neo"];
+        let gifts = ["muzi frodo", "muzi frodo", "ryan muzi", "ryan muzi", "ryan muzi", "frodo muzi", "frodo ryan", "neo muzi"];
+
+        console.log(solution(friends, gifts));
+    </script>
+</body>
+
+</html>

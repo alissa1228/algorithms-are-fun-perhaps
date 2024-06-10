@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[PRG] 추억 점수</title>
+</head>
+
+<body>
+    <Script>
+        //시간복잡도 O(n)
+        function solution(name, yearning, photo) {
+            let answer = [];
+            let arr = {}; //맵핑할 객체 초기화
+            let sum = 0; //합계 초기화
+            //이름과 추억점수 맵핑
+            name.forEach((e, i) => arr[e] = yearning[i]);
+            //photo 배열을 돌면서 추억점수 합산
+            photo.map((element) => {
+                element.forEach((e, i) => {
+                    if (Object.keys(arr).includes(e)) {
+                        sum += arr[e];
+                    }
+                });
+                answer.push(sum);
+                sum = 0;
+            })
+
+            return answer;
+        }
+    </Script>
+</body>
+
+</html>
