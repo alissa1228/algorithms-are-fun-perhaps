@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 아나그램(해쉬)</title>
+</head>
+
+<body>
+    <Script>
+
+        function solution(str, str2) {
+            let answer = 'NO';
+            let arr = str.split(''); 
+            let arr2 = str2.split(''); 
+         
+            let hash = new Map(); 
+            let hash2 = new Map(); 
+
+            for(let x of arr){
+                if(hash.has(x)){ 
+                    hash.set(x, hash.get(x)+1);
+                } else hash.set(x, 1);
+            }
+            for(let x of arr2){
+                if(hash2.has(x)){ 
+                    hash2.set(x, hash2.get(x)+1);
+                } else hash2.set(x, 1);
+            }
+        
+           hash.forEach((value, key) => {
+                if(hash2.has(key) && hash2.get(key) === value){
+                    answer = 'YES';
+                } else answer = 'NO';
+           });
+            return answer;
+        }
+        let str = 'AbaAeCe';
+        let str2 = 'baeeACA';
+        console.log(solution(str, str2));
+    </Script>
+</body>
+
+</html>
