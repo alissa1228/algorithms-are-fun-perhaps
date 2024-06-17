@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 학습 회장(해쉬)</title>
+</head>
+
+<body>
+    <Script>
+
+        function solution(arr, n) {
+            let answer = 0;
+            let max = Number.MIN_SAFE_INTEGER;
+
+            let hash = new Map(); //해쉬맵 생성
+            for(let x of arr){
+                //has()메소드는 맵 객체에 특정 키가 존재하는지 여부를 boolean으로 반환
+                //해쉬맵에 x라는 키값이 있으면 x의 value값을 1증가시키고 없으면 1로 초기화
+                if(hash.has(x)){ 
+                    //set() 메소드는 해쉬맵에 키와 값을 추가 x가 키, hash.get(x)+1가 값.
+                    hash.set(x, hash.get(x)+1);
+                } else hash.set(x, 1);
+            }
+            //해쉬맵을 돌면서 가장 큰 값을 찾기
+            //forEach() 메소드로 해쉬맵을 순회해 value 중 가장 큰 값을 찾아내기
+           hash.forEach((value, key) => {
+               if(value > max){
+                //max값을 value로 바꾸고 answer에 key값을 넣어주기
+                   max = value;
+                   answer = key;
+               }
+           });
+            return answer;
+        }
+        let arr = ['B','A','C','B','A','C','C','A','C','C','B','D','E','D','E'];
+        let n = 15;
+        console.log(solution(arr, n));
+    </Script>
+</body>
+
+</html>
