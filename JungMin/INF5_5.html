@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 최대 매출(Sliding Window)</title>
+</head>
+
+<body>
+    <Script>
+
+        function solution(arr, n) {
+            let answer = 0;
+            let sum = 0;
+            //3개씩 더하기(길이가 3인 처음 윈도우)
+            for (let i = 0; i < n; i++) {
+                sum += arr[i];
+            }
+            answer = sum;
+            //슬라이딩 윈도우
+            for (let j = n; j < arr.length; j++) {
+                //맨 앞의 값을 빼고 새로운 값을 더해주기
+                sum = sum + arr[j] - arr[j - n];
+                answer = Math.max(answer, sum);
+            }
+            return answer;
+        }
+        let arr = [12, 15, 11, 20, 25, 10, 20, 19, 13, 15]
+        let n = 3;
+        console.log(solution(arr, n));
+    </Script>
+</body>
+
+</html>
