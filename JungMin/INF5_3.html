@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 연속 부분수열1</title>
+</head>
+<body>
+    <Script>
+        //O(n)
+        function solution(arr, n) {
+          let answer = 0;
+          let sum = 0;
+          let p =0;
+            for(let i =0; i<arr.length; i++){
+                //앞에서부터 더해주기
+                sum += arr[i];
+                if(sum === n) answer++;
+                while(sum >= n){
+                //n보다 sum이 높으면 현재 p값을 빼주기-> p++
+                sum -= arr[p++];
+                //같으면 answer++
+                if(sum === n) answer++;
+                }
+            }
+        return answer
+        }
+        let arr= [1,2,1,3,1,1,1,2]
+        let n = 6;
+        console.log(solution(arr, n));
+    </Script>
+</body>
+</html>
