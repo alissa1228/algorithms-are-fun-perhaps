@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 미로탐색(DFS)</title>
+</head>
+
+<body>
+    <script>
+        //경로의 가짓수 구하기
+        function solution(board) {
+            let answer = 0;
+            //D(0,0) -> 위 D(-1,0)/ 오른쪽 D(0,1)/ 아래 D(1,0)/ 왼쪽 D(0,-1)
+            let dx = [-1,0,1,0];
+            let dy = [0,1,0,-1];
+            
+        
+            function DFS(x,y) {
+                //우리는 0,0에서 출발했기 때문에 6,6에 도착했을 때 answer++
+                if (x === 6 && y === 6) {
+                    answer++;
+                } else {
+                    for(let i =0; i<4; i++){
+                        //다음 좌표
+                        let nx = x+dx[i];
+                        let ny = y+dy[i];
+                        //경계선 처리, 가려고 하는 지점이 0이면 이동
+                        if(nx>=0 && nx<=6 && ny>=0 && ny<=6 && board[nx][ny]===0){
+                            //갔던 곳 체크
+                            board[nx][ny]=1;
+                            DFS(nx,ny);
+                            //체크 해제
+                            board[nx][ny]=0;
+                        }
+                    }
+                }
+            }
+            //꼭 체크해야함.
+            board[0][0]=1; 
+            //출발 좌표
+            DFS(0,0);
+            
+            return answer;
+
+        }
+        let board = [
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 1, 1, 1, 1, 1, 0],
+            [0, 0, 0, 1, 0, 0, 0],
+            [1, 1, 0, 1, 0, 1, 1],
+            [1, 1, 0, 0, 0, 0, 1],
+            [1, 1, 0, 1, 1, 0, 0],
+            [1, 0, 0, 0, 0, 0, 0]
+        ];
+
+        console.log(solution(board));
+    </script>
+</body>
+
+</html>
