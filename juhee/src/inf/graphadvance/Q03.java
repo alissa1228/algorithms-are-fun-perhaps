@@ -33,11 +33,10 @@ public class Q03 {
                 int nx = x + dx[i];
                 int ny = y + dy[i];
                 if (nx < 0 || ny < 0 || nx >= 7 || ny >= 7) continue;
-                if (board[nx][ny] == 0) {
-                    board[nx][ny] = 1;
-                    DFS(nx, ny);
-                    board[nx][ny] = 0;
-                }
+                if (board[nx][ny] != 0) continue;
+                board[nx][ny] = 1;
+                DFS(nx, ny);
+                board[nx][ny] = 0;
             }
         }
     }

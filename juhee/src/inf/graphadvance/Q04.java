@@ -35,10 +35,9 @@ public class Q04 {
                 for (int step : steps) {
                     int next = cq + step;
                     if (next < 0 || next > 10000) continue;
-                    if (ch[next] == 0) {
-                        q.offer(next);
-                        ch[next] = 1;
-                    }
+                    if (ch[next] != 0) continue;
+                    q.offer(next);
+                    ch[next] = 1;
                 }
             }
             cnt++;

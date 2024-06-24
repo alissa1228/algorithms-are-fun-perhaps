@@ -58,10 +58,9 @@ public class Q05 {
                     int nx = nc.x + dx[j];
                     int ny = nc.y + dy[j];
                     if (nx < 0 || nx >= N || ny < 0 || ny >= N) continue;
-                    if (board[nx][ny] == 1) {
-                        board[nx][ny] = 0;
-                        q.offer(new Coordinate(nx, ny));
-                    }
+                    if (board[nx][ny] == 0) continue;
+                    board[nx][ny] = 0;
+                    q.offer(new Coordinate(nx, ny));
                 }
             }
         }

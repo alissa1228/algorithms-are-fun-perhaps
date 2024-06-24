@@ -43,11 +43,10 @@ public class Q02 {
         if (edge == N) cnt++;
         else {
             for (int ne : list.get(edge)) {
-                if (ch[ne] == 0) {
-                    ch[ne] = 1;
-                    DFS(ne);
-                    ch[ne] = 0;
-                }
+                if (ch[ne] != 0) continue;
+                ch[ne] = 1;
+                DFS(ne);
+                ch[ne] = 0;
             }
         }
     }
