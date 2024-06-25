@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 섬나라 아일랜드(DFS 활용)</title>
+</head>
+
+<body>
+    <script>
+        function solution(arr) {
+            let answer = 0;
+            let n = arr.length;
+            //8방향 탐색
+            let dx = [-1, -1, 0, 1, 1, 1, 0, -1];
+            let dy = [0, 1, 1, 1, 0, -1, -1, -1];
+
+            function DFS(x, y) {
+                //섬을 발견하면 0으로 만들어줌(체크!)
+                arr[x][y] = 0;
+                //8방향 탐색
+                for (let k = 0; k < 8; k++) {
+
+                    //다음 좌표
+                    let nx = x + dx[k];
+                    let ny = y + dy[k];
+                    //1이면 섬이므로 DFS 탐색
+                    if (nx >= 0 && nx < n && ny >= 0 && ny < n && arr[nx][ny] === 1){
+                        DFS(nx, ny);
+                }
+            }
+        }
+
+        //2차원 배열 탐색 위함
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j < n; j++) {
+                //섬이면 DFS 탐색
+                if (arr[i][j] === 1) {
+                    //섬을 발견하면 0으로 만들어줌(체크!)
+                   arr[i][j] = 0;
+                    answer++;
+                    //DFS(0,0)에서 시작
+                    DFS(i, j);
+                }
+            }
+        }
+        return answer;
+        }
+        let arr = [
+            [1, 1, 0, 0, 0, 1, 0],
+            [0, 1, 1, 0, 1, 1, 0],
+            [0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 1, 0, 1, 1],
+            [1, 1, 0, 1, 1, 0, 0],
+            [1, 0, 0, 0, 1, 0, 0],
+            [1, 0, 1, 0, 1, 0, 0]
+        ];
+
+        console.log(solution(arr));
+
+
+    </script>
+</body>
+
+</html>
