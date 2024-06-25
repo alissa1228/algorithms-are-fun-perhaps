@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 이진트리 넓이우선탐색(BFS)</title>
+</head>
+
+<body>
+    <script>
+        function solution() {
+            let answer = "";
+            //queue 사용
+            let queue = [];
+            //1번 노드부터 시작
+            queue.push(1);
+            //queue가 빌 때까지
+            while (queue.length) {
+                let v = queue.shift();
+                //string 형태로 누적됨
+                answer += v + " ";
+                //왼쪽 자식 노드가 7보다 작거나 같을 때까지만
+                if (v * 2 <= 7) queue.push(v * 2);
+                if (v * 2 + 1 <= 7) queue.push(v * 2 + 1);
+                
+                /* 강사님 코드
+                    for(let nv of [v*2, v*2+1]){
+                    if(nv>7) continue;
+                    queue.push(nv);
+                }
+                */
+
+            }
+            return answer;
+
+        }
+
+        console.log(solution());
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 송아지 찾기(BFS: 상태트리탐색)</title>
+</head>
+
+<body>
+    <script>
+        function solution(s,e) {
+            let answer=0;
+                let ch=Array.from({length:10001}, ()=>0);//체크 배열
+                let dis=Array.from({length:10001}, ()=>0);//디스턴스 배열
+                let queue=[];
+                queue.push(s);
+                //출발지점 체크
+                ch[s]=1;
+                //출발지점 레벨
+                dis[s]=0;
+                while(queue.length){
+                    let x=queue.shift();
+                    //x 지점에서 갈 수 있는 3가지 경우의 수 전부 탐색
+                    for(let nx of [x-1, x+1, x+5]){
+                        //송아지 위치에 도착하면 해당 도착지점 레벨의 값을 리턴
+                        if(nx===e) return dis[x]+1; //nx가 답이기 때문에 dis의 레벨에 1을 더해줌
+                        //ch[nx]가 다시 queue에 들어가지 않도록 방지
+                        if(nx>0 && nx<=10000 && ch[nx]===0){
+                            //체크 배열에 체크
+                            ch[nx]=1;
+                            queue.push(nx);
+                            dis[nx]=dis[x]+1;
+                        }
+                    }
+                }
+                return answer;
+         }
+            
+        let hyunsu = 8;//현수 위치
+        let cow =3;//송아지 위치
+        console.log(solution(hyunsu, cow));
+
+        /* 레벨로 풀어보기
+
+          function solution(s, e){  
+                let answer=0;
+                let ch=Array.from({length:10001}, ()=>0);
+                let queue=[];
+                queue.push(s);
+                ch[s]=1;
+                let L=0;
+                while(queue.length){
+                    let len=queue.length;
+                    for(let i=0; i<len; i++){
+                        let x=queue.shift();
+                        for(let nx of [x-1, x+1, x+5]){
+                            if(nx===e) return L+1;
+                            if(nx>0 && nx<=10000 && ch[nx]===0){
+                                ch[nx]=1;
+                                queue.push(nx);
+                            }
+                        }
+                    }
+                    L++;
+                }
+                return answer;
+            }
+        
+        */
+    </script>
+</body>
+
+</html>

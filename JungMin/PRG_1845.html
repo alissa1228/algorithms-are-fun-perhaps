@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[PRG]폰켓몬</title>
+</head>
+
+<body>
+    <Script>
+        function solution(nums) {
+            let answer = 0;
+            let min = Number.MIN_SAFE_INTEGER;
+            //중복 제거
+            let unique = new Set(nums);
+            // 선택할 수 있는 포켓몬 수는 전체의 절반
+            let maxSelect = Math.floor(nums.length / 2);
+            // 포켓몬 종류의 수와 선택할 수 있는 수 중 작은 값을 반환
+            answer = Math.min(unique.size, maxSelect);
+            return answer
+
+        }
+        let nums = [3, 1, 2, 3];
+        console.log(solution(nums));
+    </Script>
+</body>
+
+</html>

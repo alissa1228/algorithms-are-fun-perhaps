@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>valid-parentheses</title>
+</head>
+
+<body>
+    <script>
+        // 20. Valid Parentheses
+        //https://leetcode.com/problems/valid-parentheses/
+        let isValid = function (s) {
+            let stack = [];
+            let matchingBrackets = {
+                ')': '(',
+                '}': '{',
+                ']': '['
+            };
+
+            let arr = s.split('');
+            for (let char of s) {
+
+                if (char === '(' || char === '{' || char === '[') {
+                    stack.push(char);
+                } else if (char === ')' || char === '}' || char === ']') {
+                    if (stack.length === 0 || stack.pop() !== matchingBrackets[char]) {
+                        return false;
+                    }
+                }
+            }
+
+            return stack.length === 0 ? true : false
+        };
+    </script>
+</body>
+
+</html>

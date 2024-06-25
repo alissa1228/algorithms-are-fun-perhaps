@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[INF] 경로 탐색(인접행렬)</title>
+</head>
+
+<body>
+    <script>
+        function solution(n,branches) {
+            let answer = 0;
+            let path=[];
+            let arr = Array.from(Array(6), () => Array(6).fill(0));
+            let ch = Array.from({length:6}, ()=>0);
+            //인접행렬 만들기_ex) b의 1,2를 arr[1][2]에 1로 표시
+            for(let [a,b] of branches){
+                arr[a][b]=1;
+            }
+            console.log(arr);
+           //1번 정점에서 5번으로 가는 가짓수
+            function DFS(v) {
+                //5번 정점까지 왔다면 answer++
+                if(v===n){
+                   answer++; 
+                }else{
+                    for(let i=1; i<=n; i++){
+                        //
+                        if(arr[v][i]===1 && ch[i]===0){
+                            //방문한 정점은 체크.
+                            ch[i]=1;
+                            path.push(i);
+                            //v가 i로 가야
+                            DFS(i);
+                            //다시 돌아오면 체크 해제   
+                            ch[i]=0;
+                            //집어넣었던 거 Pop! 빼줘야.
+                            path.pop();
+                        }
+                    }
+                }
+            }
+            //1번 정점부터 시작하니까 1을 넣어주면서 시작.
+            path.push(1);
+            //이렇게 방문 체크 안하면 path에 [1,2,1,3,4,5] 이렇게 들어감.
+            ch[1]=1;
+            DFS(1);
+            return answer;
+
+        }
+        //정점의 수 n, 간선의 수 
+        //n =5, m=9
+        let n=5;
+        let branches = [[1,2], [1,3], [1,4], [2,1], [2,3], [2,5], [3,4], [4,2], [4,5]];
+        console.log(solution(n,branches));
+    </script>
+</body>
+
+</html>
