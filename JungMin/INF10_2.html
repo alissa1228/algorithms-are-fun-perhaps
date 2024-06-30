@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>돌다리 건너기</title>
+</head>
+<body>
+    <script>
+        function solution(n){
+            let answer = 0;
+            //돌다리 갯수+도착지점까지 추가해서 n+2
+            let dp = Array.from({length: n+2}, () => 0);
+            dp[1] = 1;
+            dp[2] = 2;
+            //도착은 돌다리를 전부 건너고 나서기 때문에 +1 해서 돌기
+            for(let i = 3; i <= n+1; i++){
+                dp[i] = dp[i-2] + dp[i-1];
+  
+            }
+            answer = dp[n+1];             
+            return answer;  
+        } 
+        let n = 7;
+        console.log(solution(n));
+    </script>
+</body>
+</html>
