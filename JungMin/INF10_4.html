@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동전교환(냅색 알고리즘)</title>
+</head>
+<body>
+    <script>
+        //냅색 알고리즘 : 배낭 알고리즘. 배낭에 담을 수 있는 무게의 최댓갑싱 정해져있고, 일정 가치와 무게가 있는 짐들을 배낭에 넣을 때 가치의 합이 최대가 되도록 짐을 고르는 방법
+        function solution(coins,m){
+            //거스름돈을 가장 적은 수의 동전으로 교환.
+            let answer = 0;
+            let n = coins.length; //동전 종류 갯수
+            //동전의 갯수 저장
+            let dp = Array.from({length: m+1}, ()=> 1000) //1000은 최대값
+            dp[0] = 0;
+
+            //동전 각각 순회
+            for(let i = 0; i < n; i++){
+                //현재 동전에 대해 가능한 모든 금액을 순회하며 최소 동전의 수를 구함.동전으로 만들 수 있는 최소 금액 c[i]부터 시작 - m까지
+                for(let j = coins[i]; j <= m; j++){
+                    //dp[j] : j라는 금액을 거슬러주는데 사용된 동전의 최소 갯수
+                    //dp[j-coins[i]] + 1 : 1은 더해주는 이유는 해당 동전 한 개를 사용했기 때문 
+                    //더 작은 값으로 갱신
+                    //ex)j=10, coins[i]=5일 때, dp[10] = dp[10-5] + 1 = dp[5] + 1
+                    dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1); 
+                }
+                console.log(dp);
+            }
+            //m원을 거슬러주는데 사용된 동전의 최소 갯수
+            answer = dp[m];
+            return answer;
+        }
+        let coins = [1, 2, 5];
+        let money = 15;
+        console.log(solution(coins, money));
+    </script>
+</body>
+</html>
