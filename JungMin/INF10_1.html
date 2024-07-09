@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계단 오르기</title>
+</head>
+<body>
+    <script>
+        function solution(n){
+            let answer = 0;
+            //계단 수만큼 dp배열 만들기
+            //메모이제이션을 위한 배열(이미 계산한 값을 배열이나 맵 등의 자료구조에 저장)
+            let dp = Array.from({length: n+1}, () => 0);
+            //한 번에 한 계단 또는 두 계단씩 오를 수 있음.
+            dp[1] = 1;
+            dp[2] = 2;
+            //fibonacci 수열과 같은 방식으로 풀기
+            //fibo -> f(n) = f(n-2) + f(n-1)
+            for(let i = 3; i <= n; i++){
+                dp[i] = dp[i-2] + dp[i-1];
+            }
+
+            answer = dp[n];
+            
+            return answer;  
+        } 
+        let n = 7;
+        console.log(solution(n));
+    </script>
+</body>
+</html>

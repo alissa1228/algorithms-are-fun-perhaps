@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>최대점수 구하기(냅색 알고리즘)</title>
+</head>
+<body>
+    <script>
+        function solution(arr,time){
+            let answer =0;
+            let n = arr.length; //문제 갯수
+            //시간 당 풀 수 있는 문제의 최대 점수를 저장할 배열
+             let dp = Array.from({length:time+1},()=>0);
+            
+            for(let i=0; i<n;i++){
+                let s = arr[i][0]; //문제 점수
+                let p = arr[i][1]; //문제 시간
+                //동전교환처럼 작은 수부터 돌면 중복 계산이 되어버려서 안됨
+                //그래서 큰 수(뒤에서)부터 돌아야함
+                for(let j=time;j>=p;j--){
+                    dp[j] = Math.max(dp[j],dp[j-p]+s);
+                    
+                }
+            }
+            answer=dp[time];
+            return answer;
+
+        }
+        let time = 20;
+        let arr = [[10 ,5],[25, 12],[15 ,8],[6, 3],[7,4]];
+        console.log(solution(arr,time));
+    </script>
+</body>
+</html>

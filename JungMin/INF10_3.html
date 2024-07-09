@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>최대 부분 증가 수열</title>
+</head>
+<body>
+    <script>
+        //ex) [3,10,20,2,1,20] -> [3,10,20], [3,10]
+        function solution(arr){
+            let answer = 0;
+            //각 숫자가 마지막 항일 때 최대 길이를 저장할 배열
+            let dp = Array.from({length: arr.length}, () => 0);
+            //첫번 째 숫자 하나만 있는거라 초기화
+            dp[0] = 1;
+            for(let i = 1; i < arr.length; i++){
+                let max = 0;
+                //자기 바로 앞에 있는 수열들을 비교하면서 가장 큰 수열을 찾아야.
+                // 그 중에서도 최대값을 찾아야.
+                for(let j = i-1; j >= 0; j--){
+                    //arr[j]가 arr[i]보다 작아야 j번째 숫자가 앞의 항이 될 수 있는 것.
+                    //dp[j]번째 숫자가 마지막 항이면서 최대 길이가 여기에 저장되어 있음.
+                    if(arr[j] < arr[i] && dp[j] > max){
+                        max = dp[j];
+                        
+                    }
+                }
+                dp[i] = max + 1;
+                answer = Math.max(answer, dp[i]);
+            }
+            return answer;
+        }
+        let inputs = [5, 3, 7, 8, 6, 2, 9, 4];
+        console.log(solution(inputs));
+    </script>
+</body>
+</html>
