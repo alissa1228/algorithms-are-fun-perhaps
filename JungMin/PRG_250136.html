@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>석유 시추</title>
+</head>
+
+<body>
+    <script>
+        function solution(land) {
+            let answer = 0;
+            let n = land.length; //세로
+            let m = land[0].length;; //가로
+            //석유 덩어리 고유 ID 저장을 위한 배열. 각 열별로 Set을 만들어서 중복을 제거
+            let arr = Array.from({ length: m }, () => new Set());
+            //석유 덩어리 고유 ID
+            let clusterId = 1; 
+            // 각 석유 덩어리의 크기를 저장하는 객체, 키는 clotserId, 값은 해당 석유 덩어리 크기
+            let clusterSizes = {}; 
+
+            // 방향
+            const dx = [-1, 1, 0, 0];
+            const dy = [0, 0, -1, 1];
+
+            //석유 덩어리 크기 찾기 -> BFS 
+            //전체 격자 탐색
+            for (let i = 0; i < n; i++) {
+                for (let j = 0; j < m; j++) {
+                    //석유가 있는 칸에서 BFS 시작
+                    if (land[i][j] === 1) {
+                        //BFS 시작 위치를 queue에 고, 0으로 변경해 방문처리
+                        let queue = [[i, j]];
+                        let clusterSize = 0;
+                        land[i][j] = 0; // 방문 처리
+
+                        //queue가 빌 때까지 반복-> 원소를 꺼내서 상하좌우 방향으로 탐색.
+                        while (queue.length) {
+                            let [x, y] = queue.shift();
+                            //석유 덩어리 크기 계산
+                            clusterSize++;
+                            // 해당 열에 덩어리 ID 추가
+                            arr[y].add(clusterId);
+
+                            for (let k = 0; k < 4; k++) {
+                                let nx = x + dx[k];
+                                let ny = y + dy[k];
+                                // 범위 내에 있고, 석유가 있는 경우
+                                if (nx >= 0 && nx < n && ny >= 0 && ny < m && land[nx][ny] === 1) {
+                                    land[nx][ny] = 0; // 방문 처리
+                                    queue.push([nx, ny]);
+                                }
+                            }
+                        }
+                        // 덩어리 크기 저장
+                        clusterSizes[clusterId] = clusterSize;
+                        // 다음 덩어리 ID
+                        clusterId++;
+                    }
+                }
+            }
+            //시추관 삽입 시 얻을 수 있는 최대량
+            // 각 열별로 최대 석유량 계산
+            for (let k = 0; k < m; k++) {
+                // 현재 열에서 얻을 수 있는 석유의 총량
+                let currentOil = 0;
+                //arr[k]에는 현재 열에 속한 석유 덩어리 ID가 저장되어 있음 -> forEach로 돌면서 석유 덩어리 크기를 더함
+                arr[k].forEach(id => {
+                    currentOil += clusterSizes[id];
+                });
+                answer = Math.max(answer, currentOil);
+            }
+
+            return answer;
+        }
+        let land = [[0, 0, 0, 1, 1, 1, 0, 0], [0, 0, 0, 0, 1, 1, 0, 0], [1, 1, 0, 0, 0, 1, 1, 0], [1, 1, 1, 0, 0, 0, 0, 0], [1, 1, 1, 0, 0, 0, 1, 1]]
+        console.log(solution(land));
+    </script>
+</body>
+
+</html>
