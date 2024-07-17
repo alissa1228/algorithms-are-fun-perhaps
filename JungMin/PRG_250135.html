@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아날로그 시계</title>
+</head>
+
+<body>
+    <script>
+        function solution(h1, m1, s1, h2, m2, s2) {
+            //자정부터 주어진 시간까지 초침이 시침 또는 분침이 겹치는 횟수 계산
+            const getCntFromMidNight = (h, m, s) => {
+                //각도 계산
+                const [hDegree, mDegree, sDegree] = [(h * 30 + m * 0.5 + s * 0.5 / 60) % 360, (m * 6 + s * 0.1) % 360, s * 6]
+                //초침이 시침이나 분침과 겹치는 순간을 계산할 때 시작점을 -1로 설정
+                //알고리즘에서 조건을 만족할 때마다 ret 값을 증가시키기 시작할 때, 
+                //최종 결과가 0이 되는 것을 방지하고자 초깃값을 -1로 설정
+                let ret = -1
+                //초침의 각도가 분침의 각도보다 크거나 같으면 ret을 1 증가
+                if (sDegree >= mDegree) ret += 1
+                //초침이 시침의 각도보다 크거나 같으면 ret을 또 1 증가
+                if (sDegree >= hDegree) ret += 1
+                //주어진 시간까지 초침이 분침과 겹칠 수 있는 횟수를 계산.
+                ret += (h * 60 + m) * 2
+                //시간 단위로 겹침 횟수를 감소.(겹침이 중복으로 계산될 수 있는 경우를 보정)
+                ret -= h
+                //12시간이 넘어가는 경우 겹침 횟수를 2회 추가로 감소.초침과 시침이 겹칠 확률을 조정
+                if (h >= 12) ret -= 2
+                return ret
+            }
+
+            let ret = getCntFromMidNight(h2, m2, s2) - getCntFromMidNight(h1, m1, s1)
+            if ((h1 === 0 || h1 === 12) && m1 === 0 && s1 === 0) ret += 1
+            return ret
+
+            return answer;
+        }
+        let h1 = 12;
+        let m1 = 0;
+        let s1 = 0;
+        let h2 = 12;
+        let m2 = 0;
+        let s2 = 30;
+        console.log(solution(h1, m1, s1, h2, m2, s2));
+    </script>
+</body>
+
+</html>
